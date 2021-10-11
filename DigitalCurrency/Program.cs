@@ -24,6 +24,28 @@ namespace DigitalCurrency
                 switch (userChoice)
                 {
                     case ConsoleKey.P:
+                        Console.Clear();
+                        Console.WriteLine($"Purchase Digital Currency:\n[B] BitCoin {dBitCoin:c}\n[E] Etherium {dEtherium:c}\n[L] LiteCoin {dLiteCoin:c}");
+                        ConsoleKey buy = Console.ReadKey().Key;
+                        Console.WriteLine("Amount: ");
+                        decimal dAmountToBuy = decimal.Parse(Console.ReadLine());
+                        switch (buy)
+                        {
+                            case ConsoleKey.B:
+                                dBitCoin = dBitCoin + dAmountToBuy;
+                                dCashBalance = dCashBalance - dAmountToBuy;
+                                break;
+                            case ConsoleKey.E:
+                                dEtherium = dEtherium + dAmountToBuy;
+                                dCashBalance = dCashBalance - dAmountToBuy;
+                                break;
+                            case ConsoleKey.L:
+                                dLiteCoin = dLiteCoin + dAmountToBuy;
+                                dCashBalance = dCashBalance - dAmountToBuy;
+                                break;
+                            default:
+                                break;
+                        }
                         break;
                     case ConsoleKey.S:
                         Console.Clear();
