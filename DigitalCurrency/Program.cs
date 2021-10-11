@@ -26,6 +26,29 @@ namespace DigitalCurrency
                     case ConsoleKey.P:
                         break;
                     case ConsoleKey.S:
+                        Console.Clear();
+                        Console.WriteLine($"Sell Digital Currency From:\n[B] BitCoin {dBitCoin:c}\n[E] Etherium {dEtherium:c}\n[L] LiteCoin {dLiteCoin:c}");
+                        ConsoleKey sellFrom = Console.ReadKey().Key;
+                        Console.WriteLine("Amount: ");
+                        decimal dAmountToSell = decimal.Parse(Console.ReadLine());
+                        switch (sellFrom)
+                        {                            
+                            case ConsoleKey.B:
+                                dBitCoin = dBitCoin - dAmountToSell;
+                                dCashBalance = dCashBalance + dAmountToSell;
+                                break;
+                            case ConsoleKey.E:
+                                dEtherium = dEtherium - dAmountToSell;
+                                dCashBalance = dCashBalance + dAmountToSell;
+                                break;
+                            case ConsoleKey.L:
+                                dLiteCoin = dLiteCoin - dAmountToSell;
+                                dCashBalance = dCashBalance + dAmountToSell;
+                                break;
+                            default:
+                                break;
+                        }
+
                         break;
                     case ConsoleKey.V:
                         Console.Clear();
@@ -33,14 +56,51 @@ namespace DigitalCurrency
                         break;
                     case ConsoleKey.T:
                         Console.Clear();
-                        Console.WriteLine("Transfer From:\n[C] Cash\n[B] BitCoin\n[E] Etherium\n[L] LiteCoin");
+                        Console.WriteLine($"Transfer From:\n[C] Cash {dCashBalance:c}\n[B] BitCoin {dBitCoin:c}\n[E] Etherium {dEtherium:c}\n[L] LiteCoin {dLiteCoin:c}");
                         ConsoleKey transferFrom = Console.ReadKey().Key;
                         Console.WriteLine("Transfer To:\n[C] Cash\n[B] BitCoin\n[E] Etherium\n[L] LiteCoin");
                         ConsoleKey transferTo = Console.ReadKey().Key;
                         Console.WriteLine("Amount: ");
                         decimal dAmountToTransfer = decimal.Parse(Console.ReadLine());
 
+                        switch (transferFrom)
+                        {
+                            case ConsoleKey.C:
+                                dCashBalance = dCashBalance - dAmountToTransfer;
+                                break;
+                            case ConsoleKey.B:
+                                dBitCoin = dBitCoin - dAmountToTransfer;
+                                break;
+                            case ConsoleKey.E:
+                                dEtherium = dEtherium - dAmountToTransfer;
+                                break;
+                            case ConsoleKey.L:
+                                dLiteCoin = dLiteCoin - dAmountToTransfer;
+                                break;
+                            default:
+                                break;
+                        }
 
+                        switch (transferTo)
+                        {
+                            case ConsoleKey.C:
+                                dCashBalance = dCashBalance + dAmountToTransfer;
+                                break;
+                            case ConsoleKey.B:
+                                dBitCoin = dBitCoin + dAmountToTransfer;
+                                break;
+                            case ConsoleKey.E:
+                                dEtherium = dEtherium + dAmountToTransfer;
+                                break;
+                            case ConsoleKey.L:
+                                dLiteCoin = dLiteCoin + dAmountToTransfer;
+                                break;
+                            default:
+                                break;
+                        }
+
+                        Console.Clear();
+                        Console.WriteLine($"Cash Balance: {dCashBalance:c}\nBitCoin: {dBitCoin:c}\nEtherium: {dEtherium:c}\nLiteCoin: {dLiteCoin:c}\nSelect Valid Option From Menu Below To Continue\n\n");
                         break;
                     case ConsoleKey.X:
                         sExit = "X";
